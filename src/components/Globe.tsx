@@ -13,27 +13,25 @@ export function GlobeComponent() {
       <div className="mx-auto w-full relative overflow-hidden">
         <h1 className="relative z-20 font-bold text-center font-sans tracking-tight">
           <div className="relative mx-auto inline-block w-max" style={{ marginBottom: '0' }}>
-            <div
-              className="absolute left-0 top-[1px] w-full h-full bg-clip-text text-transparent 
-                animate-gradient bg-gradient-to-r from-[#ff4da6] to-[#45caff] 
-                bg-[length:200%_auto]"
+            <span
+              className="absolute inset-0 animate-gradient bg-gradient-to-r from-[#ff4da6] via-[#45caff] to-[#ff4da6] 
+                bg-[length:200%_auto] bg-clip-text text-transparent"
               style={{
                 fontSize: '1.5em',
                 paddingBottom: '0',
               }}
             >
               devspace
-            </div>
-            <div
-              className="relative bg-clip-text text-transparent 
-                bg-gradient-to-r from-[#ff4da6] to-[#45caff]"
+            </span>
+            <span
+              className="invisible"
               style={{
                 fontSize: '1.5em',
                 paddingBottom: '0',
               }}
             >
               devspace
-            </div>
+            </span>
           </div>
         </h1>
         <div className="relative z-20 text-center px-4" style={{ marginTop: '-1.5rem' }}>
