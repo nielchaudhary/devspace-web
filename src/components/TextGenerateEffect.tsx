@@ -11,24 +11,14 @@ interface TextGenerateEffectProps {
   staggerDelay?: number;
 }
 
-// Simple emoji detection regex that covers most emojis including modifiers
 const emojiRegex = /(\p{Emoji_Presentation}|\p{Emoji}\uFE0F)/u;
 
 const isEmoji = (word: string) => {
-  // Check if the entire word is an emoji or emoji + modifiers
-  // Trim spaces just in case
   const trimmed = word.trim();
-  // For your specific emoji 🤝🏻, it is actually two unicode chars: 🤝 +🏻 (skin tone modifier)
-  // So check if the whole trimmed word matches emoji regex or contains emoji chars only
-  // Here we check if the word contains only emoji characters and modifiers
-  // A simple approach: test if the word contains at least one emoji and no letters/numbers
-  // For more robust detection, you can use a library like emoji-regex, but this simple check suffices here
 
-  // Check if word contains any letter or digit
   const hasAlphaNum = /[a-zA-Z0-9]/.test(trimmed);
   if (hasAlphaNum) return false;
 
-  // Check if it contains emoji characters
   return emojiRegex.test(trimmed);
 };
 

@@ -82,7 +82,6 @@ export function Globe({ globeConfig, data }: WorldProps) {
     ...globeConfig,
   };
 
-  // Initialize globe only once
   useEffect(() => {
     if (!globeRef.current && groupRef.current) {
       globeRef.current = new ThreeGlobe();
@@ -91,7 +90,6 @@ export function Globe({ globeConfig, data }: WorldProps) {
     }
   }, []);
 
-  // Build material when globe is initialized or when relevant props change
   useEffect(() => {
     if (!globeRef.current || !isInitialized) return;
 
@@ -113,7 +111,6 @@ export function Globe({ globeConfig, data }: WorldProps) {
     globeConfig.shininess,
   ]);
 
-  // Build data when globe is initialized or when data changes
   useEffect(() => {
     if (!globeRef.current || !isInitialized || !data) return;
 
@@ -229,8 +226,8 @@ export function WebGLRendererConfig() {
   useEffect(() => {
     gl.setPixelRatio(window.devicePixelRatio);
     gl.setSize(size.width, size.height);
-    gl.setClearColor(0x000000, 0); // Changed to black background to match your screenshot
-  }, [size.width, size.height]); // Add size to the dependency array
+    gl.setClearColor(0x000000, 0);
+  }, [size.width, size.height]);
 
   return null;
 }
