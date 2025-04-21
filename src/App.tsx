@@ -1,6 +1,6 @@
-import { Landing } from './components/Landing'
-import { ShootingStars } from './components/ShootingStars'
-import { StarsBackground } from './components/Stars'
+import { Landing } from './components/Landing';
+import { ShootingStars } from './components/ShootingStars';
+import { StarsBackground } from './components/Stars';
 
 function App() {
   return (
@@ -9,7 +9,7 @@ function App() {
       <StarsBackground className="absolute inset-0 z-0" />
       <Landing />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
