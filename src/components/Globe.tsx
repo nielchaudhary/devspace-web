@@ -394,35 +394,24 @@ export function GlobeComponent() {
   ];
 
   return (
-    <div className="flex flex-row items-center justify-center py-20 h-screen md:h-auto bg-black relative w-full">
-      <div className="max-w-7xl mx-auto w-full relative overflow-hidden h-full md:h-[40rem] px-4">
-        <motion.div
-          initial={{
-            opacity: 0,
-            y: 20,
-          }}
-          animate={{
-            opacity: 1, 
-            y: 0,
-          }}
-          transition={{
-            duration: 1,
-          }}
-          className="div"
-        >
-          <h1 className="text-center text-xl md:text-4xl animate-gradient bg-gradient-to-r from-[#00FFA3] via-[#4ABFFF] to-[#00FFA3] bg-[length:200%_auto] bg-clip-text text-transparent">
-            devspace
-          </h1>
-          <p className="text-center text-base md:text-lg font-normal text-neutral-700 dark:text-neutral-200 max-w-md mt-2 mx-auto animate-gradient bg-gradient-to-r from-[#00FFA3] via-[#4ABFFF] to-[#00FFA3x`x`] bg-[length:200%_auto] bg-clip-text text-transparent">
-          Bridging designers & developers across the world
-          </p>
-        </motion.div>
-        <div className="absolute w-full bottom-0 inset-x-0 h-40 bg-gradient-to-b pointer-events-none select-none from-transparent dark:to-black to-white z-40" />
-        <div className="relative w-full" style={{ height: "800px" }}>
-  <World data={sampleArcs} globeConfig={globeConfig} />
-</div>
+<div className="flex flex-row items-center justify-center py-20 h-screen md:h-auto bg-black relative w-full">
+  <div className="max-w-7xl mx-auto w-full relative overflow-hidden h-full md:h-[40rem] px-4">
+    <h1 className="text-4xl relative z-20 md:text-5xl lg:text-8xl font-bold text-center text-black dark:text-white font-sans tracking-tight mt-10">
+      <div className="relative mx-auto inline-block w-max [filter:drop-shadow(0px_1px_3px_rgba(27,_37,_80,_0.14))]">
+        <div className="absolute left-0 top-[1px] bg-clip-text bg-no-repeat text-transparent bg-gradient-to-r py-4 from-[#ff1b6b] via-[#ff4da6] to-[#45caff] [text-shadow:0_0_rgba(0,0,0,0.1)]">
+          <span>devspace</span>
+        </div>
+        <div className="relative bg-clip-text text-transparent bg-no-repeat bg-gradient-to-r from-purple-500 via-violet-500 to-pink-500 py-4">
+          <span>devspace</span>
+        </div>
       </div>
+    </h1>
+    <div className="absolute w-full bottom-0 inset-x-0 h-40 bg-gradient-to-b pointer-events-none select-none from-transparent dark:to-black to-white z-40" />
+    <div className="relative w-full" style={{ height: "800px" }}>
+      <World data={sampleArcs} globeConfig={globeConfig} />
     </div>
+  </div>
+</div>
   
   );
 }
