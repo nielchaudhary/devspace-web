@@ -395,23 +395,33 @@ export function GlobeComponent() {
 
   return (
 <div className="flex flex-row items-center justify-center py-20 h-screen md:h-auto bg-black relative w-full">
-  <div className="max-w-7xl mx-auto w-full relative overflow-hidden h-full md:h-[40rem] px-4">
-    <h1 className="text-4xl relative z-20 md:text-5xl lg:text-8xl font-bold text-center text-black dark:text-white font-sans tracking-tight mt-10">
+  <div className="mx-auto w-full relative overflow-hidden">
+    <h1 className="relative z-20 font-bold text-center font-sans tracking-tight mt-10">
       <div className="relative mx-auto inline-block w-max [filter:drop-shadow(0px_1px_3px_rgba(27,_37,_80,_0.14))]">
-        <div className="absolute left-0 top-[1px] bg-clip-text bg-no-repeat text-transparent bg-gradient-to-r py-4 from-[#ff1b6b] via-[#ff4da6] to-[#45caff] [text-shadow:0_0_rgba(0,0,0,0.1)]">
+        <div className="absolute left-0 top-[1px] bg-clip-text bg-no-repeat text-transparent bg-gradient-to-r py-4 from-[#ff1b6b] via-[#ff4da6] to-[#45caff]" style={{ fontSize: "1.5em" }}>
           <span>devspace</span>
         </div>
-        <div className="relative bg-clip-text text-transparent bg-no-repeat bg-gradient-to-r from-purple-500 via-violet-500 to-pink-500 py-4">
+        <div className="relative bg-clip-text text-transparent bg-no-repeat bg-gradient-to-r from-purple-500 via-violet-500 to-pink-500 py-4" style={{ fontSize: "1.5em" }}>
           <span>devspace</span>
         </div>
       </div>
     </h1>
-    <div className="absolute w-full bottom-0 inset-x-0 h-40 bg-gradient-to-b pointer-events-none select-none from-transparent dark:to-black to-white z-40" />
+    
+    <h3 className="relative z-20 text-center font-sans mt-2 mb-8">
+      <span className="relative mx-auto inline-block">
+        <span className="font-bold absolute left-0 top-[1px] bg-clip-text bg-no-repeat text-transparent bg-gradient-to-r from-[#ff1b6b] via-[#ff4da6] to-[#45caff]">
+          bridging designers & developer across the world
+        </span>
+        <span className="font-bold relative bg-clip-text text-transparent bg-no-repeat bg-gradient-to-r from-purple-500 via-violet-500 to-pink-500">
+          bridging designers & developers across the world
+        </span>
+      </span>
+    </h3>
     <div className="relative w-full" style={{ height: "800px" }}>
       <World data={sampleArcs} globeConfig={globeConfig} />
     </div>
   </div>
 </div>
-  
+
   );
 }
