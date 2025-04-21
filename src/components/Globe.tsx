@@ -1,13 +1,16 @@
-'use client';
-import dynamic from 'next/dynamic';
+import { useState, useEffect, Suspense } from 'react';
 import { TextGenerateEffect } from './TextGenerateEffect';
 import { globeArcs, globeConfig } from '../data/globeData';
 
-const World = dynamic(() => import('../utils/globeConfig').then((m) => m.World), {
-  ssr: false,
-});
-
 export function GlobeComponent() {
+  const [World, setWorld] = useState<React.ComponentType<any> | null>(null);
+
+  useEffect(() => {
+    import('../utils/globeConfig').then((module) => {
+      setWorld(() => module.World);
+    });
+  }, []);
+
   return (
     <div className="flex flex-row items-center justify-center py-20 h-screen bg-black relative w-full">
       <div className="mx-auto w-full relative overflow-hidden">
@@ -38,14 +41,20 @@ export function GlobeComponent() {
           <TextGenerateEffect
             words="bridging designers & developers across the globe 🤝🏻"
             filter={true}
-            duration={1}
-            staggerDelay={0.3}
+            duration={0.5}
+            staggerDelay={0.2}
             className="text-3xl"
           />
         </div>
 
         <div className="relative w-full" style={{ height: '800px' }}>
-          <World data={globeArcs} globeConfig={globeConfig} />
+          <Suspense fallback={<div className="text-white text-center">Loading globe...</div>}>
+            {World ? (
+              <World data={globeArcs} globeConfig={globeConfig} />
+            ) : (
+              <div className="text-white text-center">Loading globe...</div>
+            )}
+          </Suspense>
         </div>
       </div>
     </div>

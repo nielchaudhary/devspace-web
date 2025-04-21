@@ -1,14 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-"use client";
-import { useEffect, useRef, useState } from "react";
-import { Color, Scene, Fog, Vector3 } from "three";
-import ThreeGlobe from "three-globe";
-import { useThree, Canvas, extend } from "@react-three/fiber";
-import { OrbitControls } from "@react-three/drei";
-import countries from "../data/globe.json";
-declare module "@react-three/fiber" {
+'use client';
+import { useEffect, useRef, useState } from 'react';
+import { Color, Scene, Fog, Vector3 } from 'three';
+import ThreeGlobe from 'three-globe';
+import { useThree, Canvas, extend } from '@react-three/fiber';
+import { OrbitControls } from '@react-three/drei';
+import countries from '../data/globe.json';
+declare module '@react-three/fiber' {
   interface ThreeElements {
-    threeGlobe: ThreeElements["mesh"] & {
+    threeGlobe: ThreeElements['mesh'] & {
       new (): ThreeGlobe;
     };
   }
@@ -60,7 +60,6 @@ interface WorldProps {
   data: Position[];
 }
 
-
 export function Globe({ globeConfig, data }: WorldProps) {
   const globeRef = useRef<ThreeGlobe | null>(null);
   const groupRef = useRef(null);
@@ -68,14 +67,14 @@ export function Globe({ globeConfig, data }: WorldProps) {
 
   const defaultProps = {
     pointSize: 1,
-    atmosphereColor: "#ffffff",
+    atmosphereColor: '#ffffff',
     showAtmosphere: true,
     atmosphereAltitude: 0.1,
-    polygonColor: "rgba(255,255,255,0.7)",
-    globeColor: "#1d072e",
-    emissive: "#000000",
+    polygonColor: 'rgba(255,255,255,0.7)',
+    globeColor: '#1d072e',
+    emissive: '#000000',
     emissiveIntensity: 0.1,
-    shininess: 1.3 ,
+    shininess: 1.3,
     arcTime: 2000,
     arcLength: 0.9,
     rings: 1,
@@ -142,10 +141,8 @@ export function Globe({ globeConfig, data }: WorldProps) {
     const filteredPoints = points.filter(
       (v, i, a) =>
         a.findIndex((v2) =>
-          ["lat", "lng"].every(
-            (k) => v2[k as "lat" | "lng"] === v[k as "lat" | "lng"],
-          ),
-        ) === i,
+          ['lat', 'lng'].every((k) => v2[k as 'lat' | 'lng'] === v[k as 'lat' | 'lng'])
+        ) === i
     );
 
     globeRef.current
@@ -163,7 +160,7 @@ export function Globe({ globeConfig, data }: WorldProps) {
       .arcStartLng((d) => (d as { startLng: number }).startLng * 1)
       .arcEndLat((d) => (d as { endLat: number }).endLat * 1)
       .arcEndLng((d) => (d as { endLng: number }).endLng * 1)
-      .arcColor((e : any) => (e as { color: string }).color)
+      .arcColor((e: any) => (e as { color: string }).color)
       .arcAltitude((e) => (e as { arcAlt: number }).arcAlt * 1)
       .arcStroke(() => [0.32, 0.28, 0.3][Math.round(Math.random() * 2)])
       .arcDashLength(defaultProps.arcLength)
@@ -183,9 +180,7 @@ export function Globe({ globeConfig, data }: WorldProps) {
       .ringColor(() => defaultProps.polygonColor)
       .ringMaxRadius(defaultProps.maxRings)
       .ringPropagationSpeed(RING_PROPAGATION_SPEED)
-      .ringRepeatPeriod(
-        (defaultProps.arcTime * defaultProps.arcLength) / defaultProps.rings,
-      );
+      .ringRepeatPeriod((defaultProps.arcTime * defaultProps.arcLength) / defaultProps.rings);
   }, [
     isInitialized,
     data,
@@ -207,11 +202,7 @@ export function Globe({ globeConfig, data }: WorldProps) {
     const interval = setInterval(() => {
       if (!globeRef.current) return;
 
-      const newNumbersOfRings = genRandomNumbers(
-        0,
-        data.length,
-        Math.floor((data.length * 4) / 5),
-      );
+      const newNumbersOfRings = genRandomNumbers(0, data.length, Math.floor((data.length * 4) / 5));
 
       const ringsData = data
         .filter((_d, i) => newNumbersOfRings.includes(i))
@@ -233,61 +224,61 @@ export function Globe({ globeConfig, data }: WorldProps) {
 }
 
 export function WebGLRendererConfig() {
-    const { gl, size } = useThree();
-  
-    useEffect(() => {
-      gl.setPixelRatio(window.devicePixelRatio);
-      gl.setSize(size.width, size.height);
-      gl.setClearColor(0x000000, 0); // Changed to black background to match your screenshot
-    }, [size.width, size.height]); // Add size to the dependency array
-  
-    return null;
-  }
+  const { gl, size } = useThree();
+
+  useEffect(() => {
+    gl.setPixelRatio(window.devicePixelRatio);
+    gl.setSize(size.width, size.height);
+    gl.setClearColor(0x000000, 0); // Changed to black background to match your screenshot
+  }, [size.width, size.height]); // Add size to the dependency array
+
+  return null;
+}
 export function World(props: WorldProps) {
-    const { globeConfig } = props;
-    const scene = new Scene();
-    scene.fog = new Fog(0xffffff, 400, 2000);
-    
-    return (
-      <Canvas 
-        scene={scene} 
-        style={{ width: '100%', height: '100%' }}
-        camera={{ 
-          fov: 50, 
-          near: 180, 
-          far: 1800,
-          position: [0, 0, cameraZ]
-        }}
-      >
-        <WebGLRendererConfig />
-        <ambientLight color={globeConfig.ambientLight} intensity={0.6} />
-        <directionalLight
-          color={globeConfig.directionalLeftLight}
-          position={new Vector3(-400, 100, 400)}
-        />
-        <directionalLight
-          color={globeConfig.directionalTopLight}
-          position={new Vector3(-200, 500, 200)}
-        />
-        <pointLight
-          color={globeConfig.pointLight}
-          position={new Vector3(-200, 500, 200)}
-          intensity={0.8}
-        />
-        <Globe {...props} />
-        <OrbitControls
-          enablePan={false}
-          enableZoom={false}
-          minDistance={cameraZ}
-          maxDistance={cameraZ}
-          autoRotateSpeed={1}
-          autoRotate={true}
-          minPolarAngle={Math.PI / 3.5}
-          maxPolarAngle={Math.PI - Math.PI / 3}
-        />
-      </Canvas>
-    );
-  }
+  const { globeConfig } = props;
+  const scene = new Scene();
+  scene.fog = new Fog(0xffffff, 400, 2000);
+
+  return (
+    <Canvas
+      scene={scene}
+      style={{ width: '100%', height: '100%' }}
+      camera={{
+        fov: 50,
+        near: 180,
+        far: 1800,
+        position: [0, 0, cameraZ],
+      }}
+    >
+      <WebGLRendererConfig />
+      <ambientLight color={globeConfig.ambientLight} intensity={0.6} />
+      <directionalLight
+        color={globeConfig.directionalLeftLight}
+        position={new Vector3(-400, 100, 400)}
+      />
+      <directionalLight
+        color={globeConfig.directionalTopLight}
+        position={new Vector3(-200, 500, 200)}
+      />
+      <pointLight
+        color={globeConfig.pointLight}
+        position={new Vector3(-200, 500, 200)}
+        intensity={0.8}
+      />
+      <Globe {...props} />
+      <OrbitControls
+        enablePan={false}
+        enableZoom={false}
+        minDistance={cameraZ}
+        maxDistance={cameraZ}
+        autoRotateSpeed={1}
+        autoRotate={true}
+        minPolarAngle={Math.PI / 3.5}
+        maxPolarAngle={Math.PI - Math.PI / 3}
+      />
+    </Canvas>
+  );
+}
 
 export function hexToRgb(hex: string) {
   const shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
