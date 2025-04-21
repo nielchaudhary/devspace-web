@@ -1,5 +1,4 @@
 "use client";
-import { motion } from "motion/react";
 import dynamic from "next/dynamic";
 
 const World = dynamic(() => import("../utils/globeConfig").then((m) => m.World), {
@@ -394,29 +393,42 @@ export function GlobeComponent() {
   ];
 
   return (
-<div className="flex flex-row items-center justify-center py-20 h-screen md:h-auto bg-black relative w-full">
+<div className="flex flex-row items-center justify-center py-20 h-screen bg-black relative w-full">
   <div className="mx-auto w-full relative overflow-hidden">
-    <h1 className="relative z-20 font-bold text-center font-sans tracking-tight mt-10">
-      <div className="relative mx-auto inline-block w-max [filter:drop-shadow(0px_1px_3px_rgba(27,_37,_80,_0.14))]">
-        <div className="absolute left-0 top-[1px] bg-clip-text bg-no-repeat text-transparent bg-gradient-to-r py-4 from-[#ff1b6b] via-[#ff4da6] to-[#45caff]" style={{ fontSize: "1.5em" }}>
-          <span>devspace</span>
-        </div>
-        <div className="relative bg-clip-text text-transparent bg-no-repeat bg-gradient-to-r from-purple-500 via-violet-500 to-pink-500 py-4" style={{ fontSize: "1.5em" }}>
-          <span>devspace</span>
-        </div>
-      </div>
-    </h1>
+
+
+  <h1 className="relative z-20 font-bold text-center font-sans tracking-tight mt-10">
+  <div className="relative mx-auto inline-block w-max">
+    <div 
+      className="absolute left-0 top-[1px] w-full h-full bg-clip-text text-transparent 
+                animate-gradient bg-gradient-to-r from-[#ff4da6] to-[#45caff] 
+                bg-[length:200%_auto] py-4"
+      style={{ 
+        fontSize: "1.5em"
+      }}
+    >
+      devspace
+    </div>
+    <div 
+      className="relative bg-clip-text text-transparent 
+                bg-gradient-to-r from-[#ff4da6] to-[#45caff] py-4"
+      style={{ fontSize: "1.5em" }}
+    >
+      devspace
+    </div>
+  </div>
+</h1>
     
-    <h3 className="relative z-20 text-center font-sans mt-2 mb-8">
+    <h2 className="relative z-20 text-center font-sans mt-2 mb-8">
       <span className="relative mx-auto inline-block">
-        <span className="font-bold absolute left-0 top-[1px] bg-clip-text bg-no-repeat text-transparent bg-gradient-to-r from-[#ff1b6b] via-[#ff4da6] to-[#45caff]">
-          bridging designers & developer across the world
+        <span className="font-bold absolute left-0 top-[1px] bg-clip-text bg-no-repeat text-transparent bg-gradient-to-r from-[#ff4da6] to-[#45caff]">
+          bridging designers & developers across the globe
         </span>
-        <span className="font-bold relative bg-clip-text text-transparent bg-no-repeat bg-gradient-to-r from-purple-500 via-violet-500 to-pink-500">
-          bridging designers & developers across the world
+        <span className="font-bold relative bg-clip-text text-transparent bg-no-repeat bg-gradient-to-r from-[#ff4da6] to-[#45caff]">
+          bridging designers & developers across the globe
         </span>
       </span>
-    </h3>
+    </h2>
     <div className="relative w-full" style={{ height: "800px" }}>
       <World data={sampleArcs} globeConfig={globeConfig} />
     </div>
