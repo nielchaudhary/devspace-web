@@ -48,7 +48,7 @@ export function GlobeComponent() {
             {' '}
             <ShimmerButton>
               <span className="font-bold bg-gradient-to-r from-[#bdc3c7] to-[#2c3e50] bg-[length:200%_auto] bg-clip-text text-transparent">
-                Get Started &gt;
+                Get Started
               </span>
             </ShimmerButton>
           </div>
