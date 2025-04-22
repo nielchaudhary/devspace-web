@@ -152,7 +152,7 @@ export function Globe({ globeConfig, data }: WorldProps) {
       .hexPolygonColor(() => defaultProps.polygonColor);
 
     globeRef.current
-      .arcsData(data)
+      .arcsData(data.slice(0, 50))
       .arcStartLat((d) => (d as { startLat: number }).startLat * 1)
       .arcStartLng((d) => (d as { startLng: number }).startLng * 1)
       .arcEndLat((d) => (d as { endLat: number }).endLat * 1)
@@ -160,7 +160,7 @@ export function Globe({ globeConfig, data }: WorldProps) {
       .arcColor((e: any) => (e as { color: string }).color)
       .arcAltitude((e) => (e as { arcAlt: number }).arcAlt * 1)
       .arcStroke(() => [0.32, 0.28, 0.3][Math.round(Math.random() * 2)])
-      .arcDashLength(defaultProps.arcLength)
+      .arcDashLength(0.7)
       .arcDashInitialGap((e) => (e as { order: number }).order * 1)
       .arcDashGap(15)
       .arcDashAnimateTime(() => defaultProps.arcTime);

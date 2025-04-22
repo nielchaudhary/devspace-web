@@ -1,10 +1,15 @@
-import { GlobeComponent } from './Globe';
+import { lazy, Suspense } from 'react';
+
+const GlobeComponent = lazy(() =>
+  import('../components/Globe').then((m) => ({ default: m.GlobeComponent }))
+);
 
 export const Landing = () => {
   return (
-    <div className="flex flex-col items-center justify-start pt-20 h-screen bg-black w-full relative mt-10">
-      <h1 />
-      <GlobeComponent />
+    <div className="flex flex-col items-center bg-black w-full">
+      <Suspense fallback={<div className="h-screen w-full bg-black" />}>
+        <GlobeComponent />
+      </Suspense>
     </div>
   );
 };

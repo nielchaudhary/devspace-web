@@ -1,7 +1,5 @@
 import { useState, useEffect, Suspense } from 'react';
-import { TextGenerateEffect } from './TextGenerateEffect';
 import { globeArcs, globeConfig } from '../data/globeData';
-// import { ShimmerButton } from './buttons/GetStartedButton';
 
 export function GlobeComponent() {
   const [World, setWorld] = useState<React.ComponentType<any> | null>(null);
@@ -13,54 +11,45 @@ export function GlobeComponent() {
   }, []);
 
   return (
-    <div className="flex flex-row items-center justify-center py-20 h-screen bg-black relative w-full">
-      <div className="mx-auto w-full relative overflow-hidden">
-        <h1 className="relative z-20 font-bold text-center font-sans tracking-tight">
-          <div className="relative mx-auto inline-block w-max" style={{ marginBottom: '0' }}>
-            <span
-              className="absolute inset-0 animate-gradient bg-gradient-to-r from-[#ff4da6] via-[#45caff] to-[#ff4da6] 
-                bg-[length:200%_auto] bg-clip-text text-transparent"
-              style={{
-                fontSize: '1.5em',
-                paddingBottom: '0',
-              }}
+    <div className="flex flex-col items-center justify-start w-full bg-black relative pt-20 pb-20 min-h-[calc(100vh-80px)]">
+      <div className="w-full max-w-7xl mx-auto px-4">
+        <div className="relative z-20 w-full text-center mb-8 mt-10">
+          <div className="relative mx-auto inline-block w-max">
+            <h1
+              className="absolute inset-0 animate-gradient bg-gradient-to-r from-[#ff4da6] via-[#45caff] to-[#ff4da6] bg-[length:200%_auto] bg-clip-text text-transparent font-bold"
+              style={{ marginTop: '2.5rem', fontSize: '3.5rem' }}
             >
               devspace
-            </span>
-            <span
-              className="invisible"
-              style={{
-                fontSize: '1.5em',
-                paddingBottom: '0',
-              }}
-            >
+            </h1>
+            <h1 className="invisible font-bold" style={{ marginTop: '2.5rem', fontSize: '3.5rem' }}>
               devspace
-            </span>
+            </h1>
           </div>
-        </h1>
-        <div className="relative z-20 text-center px-4" style={{ marginTop: '-1.5rem' }}>
-          <TextGenerateEffect
-            words="bridging designers & developers across the globe"
-            filter={true}
-            duration={0.5}
-            staggerDelay={0.2}
-            className="text-3xl"
-          />
-          <div className="mt-8 shadow-2xl">
-            {/* <ShimmerButton>
-              <span className="whitespace-pre-wrap text-center text-sm font-medium leading-none tracking-tight text-white dark:from-white dark:to-slate-900/10 lg:text-lg">
-                Get Started
-              </span>
-            </ShimmerButton> */}
+
+          <div className="relative z-20 text-center px-4">
+            <h1
+              className="font-bold bg-gradient-to-r from-[#ff4da6] via-[#45caff] to-[#ff4da6] bg-[length:200%_auto] bg-clip-text text-transparent inline-block"
+              style={{ marginTop: '-2rem', fontSize: '2.25rem' }}
+            >
+              bridging designers & developers across the globe
+            </h1>
           </div>
         </div>
 
-        <div className="relative w-full" style={{ height: '800px' }}>
-          <Suspense fallback={<div className="text-white text-center">Loading globe...</div>}>
+        <div className="relative w-full" style={{ height: '700px' }}>
+          <Suspense
+            fallback={
+              <div className="absolute inset-0 flex items-center justify-center text-white">
+                Loading globe...
+              </div>
+            }
+          >
             {World ? (
               <World data={globeArcs} globeConfig={globeConfig} />
             ) : (
-              <div className="text-white text-center">Loading globe...</div>
+              <div className="absolute inset-0 flex items-center justify-center text-white">
+                Loading globe...
+              </div>
             )}
           </Suspense>
         </div>
