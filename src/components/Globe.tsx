@@ -1,6 +1,7 @@
 import { useState, useEffect, Suspense } from 'react';
 import { TextGenerateEffect } from './TextGenerateEffect';
 import { globeArcs, globeConfig } from '../data/globeData';
+// import { ShimmerButton } from './buttons/GetStartedButton';
 
 export function GlobeComponent() {
   const [World, setWorld] = useState<React.ComponentType<any> | null>(null);
@@ -39,12 +40,19 @@ export function GlobeComponent() {
         </h1>
         <div className="relative z-20 text-center px-4" style={{ marginTop: '-1.5rem' }}>
           <TextGenerateEffect
-            words="bridging designers & developers across the globe 🤝🏻"
+            words="bridging designers & developers across the globe"
             filter={true}
             duration={0.5}
             staggerDelay={0.2}
             className="text-3xl"
           />
+          <div className="mt-8 shadow-2xl">
+            {/* <ShimmerButton>
+              <span className="whitespace-pre-wrap text-center text-sm font-medium leading-none tracking-tight text-white dark:from-white dark:to-slate-900/10 lg:text-lg">
+                Get Started
+              </span>
+            </ShimmerButton> */}
+          </div>
         </div>
 
         <div className="relative w-full" style={{ height: '800px' }}>
