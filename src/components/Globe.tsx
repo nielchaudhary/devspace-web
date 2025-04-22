@@ -24,8 +24,8 @@ export function GlobeComponent() {
         <div className="relative z-20 w-full text-center mb-8 mt-10">
           <div className="relative mx-auto inline-block w-max">
             <h1
-              className="absolute inset-0 animate-gradient bg-gradient-to-r from-[#ff4da6] via-[#45caff] to-[#ff4da6] bg-[length:200%_auto] bg-clip-text text-transparent font-bold"
-              style={{ marginTop: '2.5rem', fontSize: '3.5rem' }}
+              className="absolute inset-0 animate-gradient bg-gradient-to-r from-[#bdc3c7] to-[#2c3e50] bg-[length:200%_auto] bg-clip-text text-transparent font-bold"
+              style={{ marginTop: '2.5rem', fontSize: '3rem' }}
             >
               devspace
             </h1>
@@ -36,7 +36,7 @@ export function GlobeComponent() {
 
           <div className="relative z-20 text-center px-4">
             <h2
-              className="font-bold bg-gradient-to-r from-[#ff4da6] via-[#45caff] to-[#ff4da6] bg-[length:200%_auto] bg-clip-text text-transparent inline-block"
+              className="font-bold bg-gradient-to-r from-[#bdc3c7] to-[#2c3e50] bg-[length:200%_auto] bg-clip-text text-transparent inline-block"
               style={{ marginTop: '-2rem', fontSize: '1.8rem' }}
             >
               bridging designers & developers across the globe
