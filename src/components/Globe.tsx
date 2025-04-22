@@ -1,5 +1,6 @@
 import { useState, useEffect, Suspense } from 'react';
 import { globeArcs, globeConfig } from '../data/globeData';
+import { ShimmerButton } from './buttons/ShimmerButton';
 
 export function GlobeComponent() {
   const [World, setWorld] = useState<React.ComponentType<any> | null>(null);
@@ -25,22 +26,31 @@ export function GlobeComponent() {
           <div className="relative mx-auto inline-block w-max">
             <h1
               className="absolute inset-0 animate-gradient bg-gradient-to-r from-[#bdc3c7] to-[#2c3e50] bg-[length:200%_auto] bg-clip-text text-transparent font-bold"
-              style={{ marginTop: '2.5rem', fontSize: '3rem' }}
+              style={{ marginTop: '1.2rem', fontSize: '3rem' }}
             >
               devspace
             </h1>
-            <h1 className="invisible font-bold" style={{ marginTop: '2.5rem', fontSize: '3.5rem' }}>
+            <h1 className="invisible font-bold" style={{ marginTop: '1.2rem', fontSize: '3.5rem' }}>
               devspace
             </h1>
           </div>
 
-          <div className="relative z-20 text-center px-4">
+          <div className="relative z-20 text-center px-4 mb-6">
             <h2
               className="font-bold bg-gradient-to-r from-[#bdc3c7] to-[#2c3e50] bg-[length:200%_auto] bg-clip-text text-transparent inline-block"
-              style={{ marginTop: '-2rem', fontSize: '1.8rem' }}
+              style={{ marginTop: '-2.2rem', fontSize: '1.8rem' }}
             >
               bridging designers & developers across the globe
             </h2>
+          </div>
+
+          <div className="flex justify-center w-full mt-4">
+            {' '}
+            <ShimmerButton>
+              <span className="font-bold bg-gradient-to-r from-[#bdc3c7] to-[#2c3e50] bg-[length:200%_auto] bg-clip-text text-transparent">
+                Get Started &gt;
+              </span>
+            </ShimmerButton>
           </div>
         </div>
 

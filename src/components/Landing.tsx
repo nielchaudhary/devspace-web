@@ -10,10 +10,12 @@ export const Landing = ({ onGlobeLoad }: { onGlobeLoad: () => void }) => {
   }, [onGlobeLoad]);
 
   return (
-    <div className="flex flex-col items-center bg-black w-full">
-      <Suspense fallback={<div className="h-screen w-full bg-black" />}>
-        <GlobeComponent />
-      </Suspense>
+    <div className="relative h-screen w-full overflow-hidden">
+      <div className="h-full w-full">
+        <Suspense fallback={<div className="h-full w-full bg-black" />}>
+          <GlobeComponent />
+        </Suspense>
+      </div>
     </div>
   );
 };
