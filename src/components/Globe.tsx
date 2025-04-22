@@ -3,12 +3,20 @@ import { globeArcs, globeConfig } from '../data/globeData';
 
 export function GlobeComponent() {
   const [World, setWorld] = useState<React.ComponentType<any> | null>(null);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     import('../utils/globeConfig').then((module) => {
       setWorld(() => module.World);
     });
   }, []);
+
+  useEffect(() => {
+    if (World) {
+      const timeout = setTimeout(() => setIsVisible(true), 50);
+      return () => clearTimeout(timeout);
+    }
+  }, [World]);
 
   return (
     <div className="flex flex-col items-center justify-start w-full bg-black relative pt-20 pb-20 min-h-[calc(100vh-80px)]">
@@ -27,16 +35,23 @@ export function GlobeComponent() {
           </div>
 
           <div className="relative z-20 text-center px-4">
-            <h1
+            <h2
               className="font-bold bg-gradient-to-r from-[#ff4da6] via-[#45caff] to-[#ff4da6] bg-[length:200%_auto] bg-clip-text text-transparent inline-block"
-              style={{ marginTop: '-2rem', fontSize: '2.25rem' }}
+              style={{ marginTop: '-2rem', fontSize: '1.8rem' }}
             >
               bridging designers & developers across the globe
-            </h1>
+            </h2>
           </div>
         </div>
 
-        <div className="relative w-full" style={{ height: '700px' }}>
+        <div
+          className="relative w-full"
+          style={{
+            height: '600px',
+            opacity: isVisible ? 1 : 0,
+            transition: 'opacity 1s ease-in-out',
+          }}
+        >
           <Suspense
             fallback={
               <div className="absolute inset-0 flex items-center justify-center text-white">
