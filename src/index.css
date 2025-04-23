@@ -50,7 +50,7 @@ body {
 
 
 .animate-welcome-page-text {
-  animation: gradient-wave 2s linear forwards; 
+  animation: gradient-wave 3s linear forwards; 
   background-image: linear-gradient(
     to right,
     #bdc3c7,

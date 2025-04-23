@@ -38,7 +38,7 @@ export function GlobeComponent() {
           </div>
 
           <div className="flex justify-center w-full mt-4">
-            <ShimmerButton onClick={() => navigate('/signup')}>
+            <ShimmerButton onClick={() => navigate('/welcome')}>
               <span className="font-bold bg-gradient-to-r from-[#bdc3c7] to-[#2c3e50] bg-[length:200%_auto] bg-clip-text text-transparent">
                 Get Started
               </span>
