@@ -12,13 +12,13 @@ export const pageRoutes = [
   {
     path: '/welcome',
     component: lazy(() =>
-      import('../src/components/login-flow/Welcome').then((m) => ({ default: m.WelcomePage }))
+      import('./components/login-flow/Welcome').then((m) => ({ default: m.WelcomePage }))
     ),
   },
   {
     path: '/signup',
     component: lazy(() =>
-      import('../src/components/login-flow/SignIn').then((m) => ({ default: m.SignInPage }))
+      import('./components/login-flow/SignIn').then((m) => ({ default: m.SignInPage }))
     ),
   },
 ];
