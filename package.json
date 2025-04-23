@@ -7,7 +7,9 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "minify-globe": "json-minify src/data/globe.json > src/data/globe.min.json"
+
   },
   "dependencies": {
     "@clerk/clerk-react": "^5.29.0",
@@ -35,6 +37,7 @@
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.19",
     "globals": "^16.0.0",
+    "json-minify": "^1.0.0",
     "postcss": "^8.5.3",
     "prettier": "^3.5.3",
     "rollup-plugin-visualizer": "^5.14.0",
