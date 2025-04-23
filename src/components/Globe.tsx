@@ -1,23 +1,16 @@
-import { useState, useEffect, Suspense } from 'react';
+import { lazy, Suspense } from 'react';
 import { globeArcs, globeConfig } from '../data/globeData';
 import { ShimmerButton } from './buttons/ShimmerButton';
+import { useNavigate } from 'react-router-dom';
+
+const World = lazy(() =>
+  import('../utils/globeConfig').then((module) => ({
+    default: module.World,
+  }))
+);
 
 export function GlobeComponent() {
-  const [World, setWorld] = useState<React.ComponentType<any> | null>(null);
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    import('../utils/globeConfig').then((module) => {
-      setWorld(() => module.World);
-    });
-  }, []);
-
-  useEffect(() => {
-    if (World) {
-      const timeout = setTimeout(() => setIsVisible(true), 50);
-      return () => clearTimeout(timeout);
-    }
-  }, [World]);
+  const navigate = useNavigate();
 
   return (
     <div className="flex flex-col items-center justify-start w-full bg-black relative pt-20 pb-20 min-h-[calc(100vh-80px)]">
@@ -45,8 +38,7 @@ export function GlobeComponent() {
           </div>
 
           <div className="flex justify-center w-full mt-4">
-            {' '}
-            <ShimmerButton>
+            <ShimmerButton onClick={() => navigate('/signup')}>
               <span className="font-bold bg-gradient-to-r from-[#bdc3c7] to-[#2c3e50] bg-[length:200%_auto] bg-clip-text text-transparent">
                 Get Started
               </span>
@@ -58,8 +50,6 @@ export function GlobeComponent() {
           className="relative w-full"
           style={{
             height: '600px',
-            opacity: isVisible ? 1 : 0,
-            transition: 'opacity 1s ease-in-out',
           }}
         >
           <Suspense
@@ -69,13 +59,7 @@ export function GlobeComponent() {
               </div>
             }
           >
-            {World ? (
-              <World data={globeArcs} globeConfig={globeConfig} />
-            ) : (
-              <div className="absolute inset-0 flex items-center justify-center text-white">
-                Loading globe...
-              </div>
-            )}
+            <World data={globeArcs} globeConfig={globeConfig} />
           </Suspense>
         </div>
       </div>

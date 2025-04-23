@@ -1,26 +1,15 @@
-import { useCallback, useState, useMemo } from 'react';
-import { Landing } from './components/Landing';
-import { ShootingStars } from './components/ShootingStars';
-import { StarsBackground } from './components/Stars';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { pageRoutes } from './router';
 
 function App() {
-  const [landingLoaded, setLandingLoaded] = useState(false);
-  const handleGlobeLoad = useCallback(() => setLandingLoaded(true), []);
-
-  const memoizedShootingStars = useMemo(() => {
-    return landingLoaded ? <ShootingStars className="absolute inset-0 z-0" /> : null;
-  }, [landingLoaded]);
-
-  const memoizedStarsBackground = useMemo(() => {
-    return <StarsBackground className="absolute inset-0 z-0" />;
-  }, []);
-
   return (
-    <div className="relative w-full h-full">
-      {memoizedShootingStars}
-      {memoizedStarsBackground}
-      <Landing onGlobeLoad={handleGlobeLoad} />
-    </div>
+    <BrowserRouter>
+      <Routes>
+        {pageRoutes.map((pageRoute) => (
+          <Route key={pageRoute.path} path={pageRoute.path} element={<pageRoute.component />} />
+        ))}
+      </Routes>
+    </BrowserRouter>
   );
 }
 
