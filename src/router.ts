@@ -10,9 +10,15 @@ export const pageRoutes = [
     ),
   },
   {
+    path: '/welcome',
+    component: lazy(() =>
+      import('./components/login-flow/Welcome').then((m) => ({ default: m.WelcomePage }))
+    ),
+  },
+  {
     path: '/signup',
     component: lazy(() =>
-      import('../src/components/LoginPage').then((m) => ({ default: m.LoginPage }))
+      import('./components/login-flow/SignIn').then((m) => ({ default: m.SignInPage }))
     ),
   },
 ];
